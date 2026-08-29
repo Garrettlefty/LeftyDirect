@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeftyDirect — Golf clubs for left-handed golfers, only</title>
+<meta name="description" content="Every club on this site is left-handed. Pulled daily from trusted retailers and verified before it's listed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,680&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#132018;
+    --fairway:#1f3d2a;
+    --fairway-light:#3c5f45;
+    --fairway-pale:#dfe9e1;
+    --sand:#e8ddc1;
+    --chalk:#f7f3e8;
+    --persimmon:#b4482a;
+    --persimmon-dark:#8f3720;
+    --gold:#b6952f;
+    --line:rgba(19,32,24,0.14);
+    --line-light:rgba(247,243,232,0.22);
+    --shadow:0 18px 40px -22px rgba(19,32,24,0.45);
+    --radius:14px;
+    --display:'Fraunces', serif;
+    --body:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--chalk);
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  :focus-visible{outline:2px solid var(--persimmon);outline-offset:3px;}
+
+  /* ---------- header ---------- */
+  header.site{
+    background:var(--fairway);
+    color:var(--chalk);
+    position:sticky;top:0;z-index:40;
+    border-bottom:1px solid rgba(0,0,0,0.15);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;gap:20px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:680;font-size:1.35rem;letter-spacing:-0.01em;text-decoration:none;color:var(--chalk);white-space:nowrap;}
+  .brand .mark{width:34px;height:34px;flex:none;}
+  .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:0.92rem;font-weight:500;flex-wrap:wrap;}
+  .nav-links a{text-decoration:none;color:var(--fairway-pale);border-bottom:1px solid transparent;padding-bottom:2px;transition:color .15s,border-color .15s;}
+  .nav-links a:hover{color:var(--chalk);border-color:var(--gold);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--body);font-weight:600;font-size:0.9rem;
+    padding:11px 20px;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;text-decoration:none;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--persimmon);color:var(--chalk);}
+  .btn-primary:hover{background:var(--persimmon-dark);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--chalk);border-color:var(--line-light);}
+  .btn-ghost:hover{border-color:var(--gold);}
+  .menu-toggle{display:none;background:none;border:1px solid var(--line-light);color:var(--chalk);border-radius:8px;padding:8px 10px;font-size:1rem;cursor:pointer;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:linear-gradient(180deg,var(--fairway) 0%,#193322 100%);
+    color:var(--chalk);
+    position:relative;overflow:hidden;
+    padding:76px 0 54px;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .eyebrow{
+    font-family:var(--mono);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);display:inline-block;}
+  h1{
+    font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,4.4vw,3.4rem);
+    line-height:1.05;letter-spacing:-0.015em;margin:0 0 22px;
+  }
+  h1 em{font-style:italic;color:var(--sand);}
+  .hero p.lead{font-size:1.08rem;line-height:1.6;color:var(--fairway-pale);max-width:46ch;margin:0 0 30px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px;}
+  .scorecard{
+    display:flex;gap:0;border:1px solid var(--line-light);border-radius:12px;overflow:hidden;
+    font-family:var(--mono);width:fit-content;
+  }
+  .scorecard div{padding:12px 20px;border-right:1px solid var(--line-light);}
+  .scorecard div:last-child{border-right:none;}
+  .scorecard .num{display:block;font-size:1.25rem;font-weight:600;color:var(--gold);}
+  .scorecard .lbl{display:block;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--fairway-pale);margin-top:2px;}
+
+  .hero-art{position:relative;height:340px;}
+  .stamp{position:absolute;top:6px;right:6px;width:132px;height:132px;}
+  .swing-path{position:absolute;inset:0;}
+
+  /* ---------- section shells ---------- */
+  section{padding:64px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:30px;flex-wrap:wrap;}
+  .section-head h2{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,2.6vw,2.1rem);margin:0;letter-spacing:-0.01em;}
+  .section-sub{color:var(--fairway-light);font-size:0.95rem;max-width:52ch;margin-top:6px;}
+
+  /* ---------- filters ---------- */
+  .filters{background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .filters .wrap{padding:22px 28px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;}
+  .pill{
+    font-family:var(--body);font-size:0.85rem;font-weight:600;padding:9px 16px;border-radius:999px;
+    background:var(--chalk);border:1px solid var(--line);cursor:pointer;color:var(--ink);transition:all .15s ease;
+  }
+  .pill.active,.pill:hover{background:var(--fairway);color:var(--chalk);border-color:var(--fairway);}
+  .filter-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .search-box{
+    font-family:var(--body);font-size:0.88rem;padding:10px 14px;border-radius:999px;
+    border:1px solid var(--line);min-width:200px;background:var(--chalk);
+  }
+  select.sort{
+    font-family:var(--body);font-size:0.85rem;font-weight:600;padding:10px 14px;border-radius:999px;
+    border:1px solid var(--line);background:var(--chalk);cursor:pointer;
+  }
+
+  /* ---------- product grid ---------- */
+  #result-count{font-family:var(--mono);font-size:0.82rem;color:var(--fairway-light);margin:0 0 22px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:22px;}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-4px);}
+  .card-art{
+    background:var(--fairway-pale);position:relative;height:160px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-art svg{width:74px;height:74px;color:var(--fairway);}
+  .badge{
+    position:absolute;top:10px;left:10px;
+    font-family:var(--mono);font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--fairway);color:var(--chalk);padding:4px 9px;border-radius:999px;
+    display:flex;align-items:center;gap:5px;
+  }
+  .badge svg{width:10px;height:10px;color:var(--gold);}
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-cat{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--persimmon);}
+  .card-title{font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.3;margin:0;}
+  .card-specs{font-family:var(--mono);font-size:0.76rem;color:var(--fairway-light);line-height:1.5;}
+  .card-foot{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .price{font-family:var(--display);font-weight:600;font-size:1.15rem;}
+  .retailer{font-size:0.72rem;color:var(--fairway-light);display:block;margin-top:2px;}
+  .card-buy{
+    font-family:var(--body);font-size:0.82rem;font-weight:600;padding:9px 14px;border-radius:999px;
+    background:var(--ink);color:var(--chalk);text-decoration:none;white-space:nowrap;
+    transition:background .15s ease;
+  }
+  .card-buy:hover{background:var(--persimmon);}
+  .empty-state{text-align:center;padding:60px 20px;color:var(--fairway-light);font-family:var(--mono);}
+
+  /* ---------- how it works ---------- */
+  .how{background:var(--fairway);color:var(--chalk);}
+  .how .section-sub{color:var(--fairway-pale);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:step;margin-top:10px;}
+  .step{border-top:2px solid var(--gold);padding-top:18px;}
+  .step-num{font-family:var(--mono);font-size:0.78rem;color:var(--gold);letter-spacing:0.08em;}
+  .step h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin:8px 0 8px;}
+  .step p{color:var(--fairway-pale);font-size:0.92rem;line-height:1.55;margin:0;}
+  .disclosure-note{
+    margin-top:36px;padding:16px 18px;border:1px dashed var(--line-light);border-radius:10px;
+    font-size:0.82rem;color:var(--fairway-pale);line-height:1.6;
+  }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:var(--fairway-pale);padding:44px 0 28px;}
+  .foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;border-bottom:1px solid rgba(247,243,232,0.12);padding-bottom:28px;margin-bottom:20px;}
+  .foot-brand{font-family:var(--display);font-weight:600;font-size:1.2rem;color:var(--chalk);}
+  .foot-links{display:flex;gap:34px;flex-wrap:wrap;}
+  .foot-col h4{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
+  .foot-col a{display:block;font-size:0.85rem;color:var(--fairway-pale);text-decoration:none;margin-bottom:7px;}
+  .foot-col a:hover{color:var(--chalk);}
+  .fine-print{font-size:0.76rem;line-height:1.7;color:rgba(247,243,232,0.55);max-width:78ch;}
+  .fine-print span#last-updated{color:var(--gold);font-family:var(--mono);}
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{height:220px;order:-1;}
+    .nav-links{display:none;}
+    .menu-toggle{display:inline-flex;}
+    .steps{grid-template-columns:1fr;}
+    .foot-grid{flex-direction:column;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .card,.btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav wrap">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" stroke="#B6952F" stroke-width="1.4"/>
+        <path d="M14 28 L14 12 Q14 9 18 9 Q23 9 23 13 Q23 17 18 17 L14 17" stroke="#F7F3E8" stroke-width="2" fill="none" stroke-linecap="round" transform="scale(-1,1) translate(-40,0)"/>
+      </svg>
+      LeftyDirect
+    </a>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop all</a></li>
+      <li><a href="#shop" data-cat="driver">Drivers</a></li>
+      <li><a href="#shop" data-cat="iron">Irons</a></li>
+      <li><a href="#shop" data-cat="putter">Putters</a></li>
+      <li><a href="#how">How it works</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#shop">Shop left-handed clubs</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Built for the 10%</div>
+      <h1>Stop scrolling past clubs<br>you can't even <em>swing</em>.</h1>
+      <p class="lead">LeftyDirect only lists left-handed golf clubs — pulled daily from trusted retailers and verified before they're ever shown to you. No filters. No guessing. No righty drivers sneaking into your search.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#shop">Shop left-handed clubs</a>
+        <a class="btn btn-ghost" href="#how">How the automation works</a>
+      </div>
+      <div class="scorecard">
+        <div><span class="num" id="stat-count">—</span><span class="lbl">Verified clubs</span></div>
+        <div><span class="num" id="stat-retailers">—</span><span class="lbl">Retail partners</span></div>
+        <div><span class="num">100%</span><span class="lbl">Left-handed</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="swing-path" viewBox="0 0 380 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 280 C 110 300, 160 230, 150 160 C 142 100, 200 60, 300 55" stroke="#B6952F" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+        <circle cx="40" cy="280" r="7" fill="#F7F3E8"/>
+        <circle cx="40" cy="280" r="7" stroke="#B4482A" stroke-width="1.5"/>
+        <g transform="translate(292,30)">
+          <line x1="8" y1="0" x2="8" y2="34" stroke="#F7F3E8" stroke-width="2"/>
+          <path d="M8 0 L26 6 L8 12 Z" fill="#B4482A"/>
+        </g>
+      </svg>
+      <svg class="stamp" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="stampCircle" d="M 70,70 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0"/>
+        </defs>
+        <circle cx="70" cy="70" r="64" fill="none" stroke="#B6952F" stroke-width="1" stroke-dasharray="1 5"/>
+        <circle cx="70" cy="70" r="52" fill="none" stroke="#B6952F" stroke-width="1.2"/>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#F7F3E8" letter-spacing="2">
+          <textPath href="#stampCircle" startOffset="2%">VERIFIED LEFT-HANDED · VERIFIED LEFT-HANDED ·</textPath>
+        </text>
+        <text x="70" y="78" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="30" fill="#F7F3E8">L</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="wrap">
+    <div class="pills" id="pillGroup">
+      <button class="pill active" data-cat="all">All clubs</button>
+      <button class="pill" data-cat="driver">Drivers</button>
+      <button class="pill" data-cat="iron">Irons</button>
+      <button class="pill" data-cat="hybrid">Hybrids</button>
+      <button class="pill" data-cat="wedge">Wedges</button>
+      <button class="pill" data-cat="putter">Putters</button>
+      <button class="pill" data-cat="set">Complete sets</button>
+    </div>
+    <div class="filter-tools">
+      <input class="search-box" id="searchBox" type="search" placeholder="Search brand or model…" aria-label="Search clubs">
+      <select class="sort" id="sortSelect" aria-label="Sort clubs">
+        <option value="newest">Newest first</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="wrap">
+    <p id="result-count"></p>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>What happens after you click "Buy"</h2>
+        <p class="section-sub">LeftyDirect doesn't hold inventory or ship anything. It's a storefront that points you to the retailer that actually has the club.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01 / Find</div>
+        <h3>You find a club here</h3>
+        <p>Every listing is pulled from a retailer's live feed and checked for an explicit left-hand designation before it's shown.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02 / Redirect</div>
+        <h3>You check out with the retailer</h3>
+        <p>Clicking "View at [retailer]" sends you to their site with your cart, payment, and shipping handled entirely by them.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03 / Commission</div>
+        <h3>LeftyDirect earns a referral fee</h3>
+        <p>The retailer pays LeftyDirect a small commission for the referral. Your price doesn't change either way.</p>
+      </div>
+    </div>
+    <p class="disclosure-note">
+      <strong>Affiliate disclosure:</strong> LeftyDirect participates in affiliate programs including the Amazon Associates Program and eBay Partner Network. As an affiliate, we earn from qualifying purchases made through links on this site, at no additional cost to you. Product data, availability, and pricing are supplied by each retailer and can change after our last sync — always confirm details on the retailer's site before buying.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">LeftyDirect</div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>Shop</h4>
+          <a href="#shop" data-cat="driver">Drivers</a>
+          <a href="#shop" data-cat="iron">Irons</a>
+          <a href="#shop" data-cat="putter">Putters</a>
+          <a href="#shop" data-cat="set">Complete sets</a>
+        </div>
+        <div class="foot-col">
+          <h4>About</h4>
+          <a href="#how">How it works</a>
+          <a href="#top">Why left-handed only</a>
+        </div>
+      </div>
+    </div>
+    <p class="fine-print">
+      LeftyDirect is an independent affiliate marketplace and is not affiliated with, endorsed by, or sponsored by any club manufacturer or retailer named on this site. Catalog last synced <span id="last-updated">—</span>. See our affiliate disclosure above for how this site is funded.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- category icon set (simple line-art club heads, kept intentionally quiet) ----
+  const ICONS = {
+    driver: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 50 L38 20"/><path d="M36 12 C 50 12, 54 22, 50 30 C 46 38, 34 38, 30 30 C 27 24, 30 16, 36 12 Z"/></svg>',
+    iron: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 50 L34 16"/><path d="M34 16 L50 12 L48 24 L30 30 Z"/></svg>',
+    hybrid: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M16 50 L36 22"/><path d="M35 15 C 46 14, 50 22, 47 29 C 44 35, 34 34, 32 27 C 30 22, 31 18, 35 15 Z"/></svg>',
+    wedge: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 50 L32 20"/><path d="M32 20 L50 10 L46 26 L28 30 Z"/></svg>',
+    putter: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M26 50 L34 22"/><path d="M34 22 L52 20 L52 30 L34 30 Z"/></svg>',
+    set: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 54 L18 14 C 18 10, 24 10, 24 14 L24 30"/><path d="M28 54 L32 12"/><path d="M38 54 L46 16"/><path d="M12 54 L52 54"/></svg>'
+  };
+  const CHECK = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10 L8 14 L16 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  const CATEGORY_LABEL = {driver:'Driver',iron:'Iron set',hybrid:'Hybrid',wedge:'Wedge',putter:'Putter',set:'Complete set'};
+
+  // ---- fallback demo data, used only if products.json can't be fetched (e.g. opening this file directly) ----
+  const FALLBACK = {
+    generated_at: new Date().toISOString(),
+    products: [
+      {id:'p1',brand:'Callaway',name:'Paradym Ai Smoke Driver',category:'driver',price:449,retailer:'Rock Bottom Golf',affiliate_url:'#demo',specs:{loft:'10.5°',shaft:'Regular graphite'},added_at:'2026-08-20'},
+      {id:'p2',brand:'TaylorMade',name:'Qi10 Max Driver',category:'driver',price:499,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'9°',shaft:'Stiff graphite'},added_at:'2026-08-22'},
+      {id:'p3',brand:'Ping',name:'G430 Iron Set, 5-PW',category:'iron',price:799,retailer:'PGA Tour Superstore',affiliate_url:'#demo',specs:{set:'5–PW',shaft:'Steel, regular'},added_at:'2026-08-18'},
+      {id:'p4',brand:'Mizuno',name:'JPX923 Forged Irons, 4-PW',category:'iron',price:899,retailer:'Worldwide Golf Shops',affiliate_url:'#demo',specs:{set:'4–PW',shaft:'Steel, stiff'},added_at:'2026-08-15'},
+      {id:'p5',brand:'Titleist',name:'TSR2 Hybrid',category:'hybrid',price:279,retailer:'Rock Bottom Golf',affiliate_url:'#demo',specs:{loft:'19°',shaft:'Regular graphite'},added_at:'2026-08-24'},
+      {id:'p6',brand:'Cobra',name:'Darkspeed Hybrid',category:'hybrid',price:249,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'22°',shaft:'Senior graphite'},added_at:'2026-08-11'},
+      {id:'p7',brand:'Cleveland',name:'RTX ZipCore Wedge',category:'wedge',price:149,retailer:'PGA Tour Superstore',affiliate_url:'#demo',specs:{loft:'56°',bounce:'12°'},added_at:'2026-08-23'},
+      {id:'p8',brand:'Vokey',name:'SM10 Wedge',category:'wedge',price:189,retailer:'Rock Bottom Golf',affiliate_url:'#demo',specs:{loft:'60°',bounce:'8°'},added_at:'2026-08-19'},
+      {id:'p9',brand:'Odyssey',name:'Ai-One Milled Putter',category:'putter',price:249,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{length:'34"',style:'Blade'},added_at:'2026-08-21'},
+      {id:'p10',brand:'Ping',name:'PLD Anser Putter',category:'putter',price:399,retailer:'Worldwide Golf Shops',affiliate_url:'#demo',specs:{length:'35"',style:'Blade'},added_at:'2026-08-17'},
+      {id:'p11',brand:'Wilson',name:'Launch Pad 2 Complete Set',category:'set',price:399,retailer:'Amazon',affiliate_url:'#demo',specs:{clubs:'11-piece + bag'},added_at:'2026-08-14'},
+      {id:'p12',brand:'Cobra',name:'Air-X Complete Set',category:'set',price:649,retailer:'PGA Tour Superstore',affiliate_url:'#demo',specs:{clubs:'10-piece + bag'},added_at:'2026-08-25'},
+      {id:'p13',brand:'TaylorMade',name:'Stealth 2 HD Driver',category:'driver',price:329,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'12°',shaft:'Senior graphite'},added_at:'2026-08-09'},
+      {id:'p14',brand:'Titleist',name:'T100 Iron Set, 4-PW',category:'iron',price:1099,retailer:'Worldwide Golf Shops',affiliate_url:'#demo',specs:{set:'4–PW',shaft:'Steel, stiff'},added_at:'2026-08-12'}
+    ]
+  };
+
+  let ALL_PRODUCTS = [];
+  let SOURCE_META = {generated_at:null};
+  let state = {cat:'all', q:'', sort:'newest'};
+
+  function formatSpecs(p){
+    const s = p.specs || {};
+    return Object.entries(s).map(([k,v]) => v).join(' · ');
+  }
+
+  function money(n){
+    return '$' + Number(n).toLocaleString('en-US', {maximumFractionDigits:0});
+  }
+
+  function render(){
+    const grid = document.getElementById('productGrid');
+    let items = ALL_PRODUCTS.filter(p => state.cat === 'all' || p.category === state.cat);
+    if(state.q.trim()){
+      const q = state.q.toLowerCase();
+      items = items.filter(p => (p.brand+' '+p.name).toLowerCase().includes(q));
+    }
+    items.sort((a,b) => {
+      if(state.sort === 'price-asc') return a.price - b.price;
+      if(state.sort === 'price-desc') return b.price - a.price;
+      return new Date(b.added_at) - new Date(a.added_at);
+    });
+
+    document.getElementById('result-count').textContent =
+      items.length + (items.length === 1 ? ' club found' : ' clubs found') +
+      (state.cat !== 'all' ? ' · ' + CATEGORY_LABEL[state.cat] : '');
+
+    if(items.length === 0){
+      grid.innerHTML = '<div class="empty-state">No clubs match that filter yet. Try a different category or clear your search.</div>';
+      return;
+    }
+
+    grid.innerHTML = items.map(p => `
+      <article class="card">
+        <div class="card-art">
+          <span class="badge">${CHECK} Verified lefty</span>
+          ${ICONS[p.category] || ''}
+        </div>
+        <div class="card-body">
+          <span class="card-cat">${CATEGORY_LABEL[p.category] || p.category}</span>
+          <h3 class="card-title">${p.brand} ${p.name}</h3>
+          <div class="card-specs">${formatSpecs(p)}</div>
+          <div class="card-foot">
+            <div>
+              <span class="price">${money(p.price)}</span>
+              <span class="retailer">at ${p.retailer}</span>
+            </div>
+            <a class="card-buy" href="${p.affiliate_url}" target="_blank" rel="nofollow sponsored noopener">View →</a>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function updateStats(){
+    document.getElementById('stat-count').textContent = ALL_PRODUCTS.length;
+    document.getElementById('stat-retailers').textContent = new Set(ALL_PRODUCTS.map(p=>p.retailer)).size;
+    const lu = document.getElementById('last-updated');
+    if(SOURCE_META.generated_at){
+      const d = new Date(SOURCE_META.generated_at);
+      lu.textContent = d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+    }
+  }
+
+  function wireControls(){
+    document.getElementById('pillGroup').addEventListener('click', e => {
+      const btn = e.target.closest('.pill');
+      if(!btn) return;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      state.cat = btn.dataset.cat;
+      render();
+    });
+    document.querySelectorAll('a[data-cat]').forEach(a => {
+      a.addEventListener('click', () => {
+        state.cat = a.dataset.cat;
+        document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.cat === a.dataset.cat));
+        render();
+      });
+    });
+    document.getElementById('searchBox').addEventListener('input', e => { state.q = e.target.value; render(); });
+    document.getElementById('sortSelect').addEventListener('change', e => { state.sort = e.target.value; render(); });
+  }
+
+  function boot(products, meta){
+    ALL_PRODUCTS = products;
+    SOURCE_META = meta;
+    updateStats();
+    render();
+  }
+
+  // Try the live, automation-generated feed first; fall back to bundled demo data.
+  fetch('./products.json', {cache:'no-store'})
+    .then(r => { if(!r.ok) throw new Error('no feed'); return r.json(); })
+    .then(data => boot(data.products || [], {generated_at:data.generated_at}))
+    .catch(() => boot(FALLBACK.products, {generated_at:FALLBACK.generated_at}));
+
+  wireControls();
+})();
+</script>
+</body>
+</html>

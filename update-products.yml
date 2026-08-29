@@ -1,0 +1,47 @@
+name: Update LeftyDirect catalog
+
+# Runs the catalog script on a schedule so the site's product feed stays
+# current with no one having to touch it. On every run it either commits
+# an updated products.json (which triggers your host — GitHub Pages,
+# Netlify, etc. — to redeploy automatically) or does nothing if nothing
+# changed.
+
+on:
+  schedule:
+    - cron: "0 11 * * *"   # daily at 11:00 UTC (~6am ET) — edit as you like
+  workflow_dispatch: {}     # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Rebuild product feed
+        env:
+          EBAY_OAUTH_TOKEN: ${{ secrets.EBAY_OAUTH_TOKEN }}
+          EBAY_CAMPAIGN_ID: ${{ secrets.EBAY_CAMPAIGN_ID }}
+          AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
+          AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+        run: python scripts/fetch_products.py
+
+      - name: Commit updated catalog if it changed
+        run: |
+          git config user.name "leftydirect-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add products.json
+          git diff --cached --quiet && echo "No catalog changes today." || \
+            (git commit -m "Auto-update product catalog $(date -u +%Y-%m-%d)" && git push)

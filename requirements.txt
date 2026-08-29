@@ -1,0 +1,2 @@
+requests>=2.31
+python-amazon-paapi>=5.0.1

@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-08-28T12:00:00Z",
+  "source": "manual-seed",
+  "note": "This is starter/demo data so the site has something to show on day one. Once scripts/fetch_products.py is connected to real affiliate APIs and scheduled via GitHub Actions, this file is regenerated automatically and this note goes away.",
+  "products": [
+    {"id":"p1","brand":"Callaway","name":"Paradym Ai Smoke Driver","category":"driver","hand":"left","price":449,"currency":"USD","retailer":"Rock Bottom Golf","affiliate_url":"#demo","specs":{"loft":"10.5°","shaft":"Regular graphite"},"dexterity_verified":true,"added_at":"2026-08-20"},
+    {"id":"p2","brand":"TaylorMade","name":"Qi10 Max Driver","category":"driver","hand":"left","price":499,"currency":"USD","retailer":"2nd Swing Golf","affiliate_url":"#demo","specs":{"loft":"9°","shaft":"Stiff graphite"},"dexterity_verified":true,"added_at":"2026-08-22"},
+    {"id":"p3","brand":"Ping","name":"G430 Iron Set, 5-PW","category":"iron","hand":"left","price":799,"currency":"USD","retailer":"PGA Tour Superstore","affiliate_url":"#demo","specs":{"set":"5–PW","shaft":"Steel, regular"},"dexterity_verified":true,"added_at":"2026-08-18"},
+    {"id":"p4","brand":"Mizuno","name":"JPX923 Forged Irons, 4-PW","category":"iron","hand":"left","price":899,"currency":"USD","retailer":"Worldwide Golf Shops","affiliate_url":"#demo","specs":{"set":"4–PW","shaft":"Steel, stiff"},"dexterity_verified":true,"added_at":"2026-08-15"},
+    {"id":"p5","brand":"Titleist","name":"TSR2 Hybrid","category":"hybrid","hand":"left","price":279,"currency":"USD","retailer":"Rock Bottom Golf","affiliate_url":"#demo","specs":{"loft":"19°","shaft":"Regular graphite"},"dexterity_verified":true,"added_at":"2026-08-24"},
+    {"id":"p6","brand":"Cobra","name":"Darkspeed Hybrid","category":"hybrid","hand":"left","price":249,"currency":"USD","retailer":"2nd Swing Golf","affiliate_url":"#demo","specs":{"loft":"22°","shaft":"Senior graphite"},"dexterity_verified":true,"added_at":"2026-08-11"},
+    {"id":"p7","brand":"Cleveland","name":"RTX ZipCore Wedge","category":"wedge","hand":"left","price":149,"currency":"USD","retailer":"PGA Tour Superstore","affiliate_url":"#demo","specs":{"loft":"56°","bounce":"12°"},"dexterity_verified":true,"added_at":"2026-08-23"},
+    {"id":"p8","brand":"Vokey","name":"SM10 Wedge","category":"wedge","hand":"left","price":189,"currency":"USD","retailer":"Rock Bottom Golf","affiliate_url":"#demo","specs":{"loft":"60°","bounce":"8°"},"dexterity_verified":true,"added_at":"2026-08-19"},
+    {"id":"p9","brand":"Odyssey","name":"Ai-One Milled Putter","category":"putter","hand":"left","price":249,"currency":"USD","retailer":"2nd Swing Golf","affiliate_url":"#demo","specs":{"length":"34\"","style":"Blade"},"dexterity_verified":true,"added_at":"2026-08-21"},
+    {"id":"p10","brand":"Ping","name":"PLD Anser Putter","category":"putter","hand":"left","price":399,"currency":"USD","retailer":"Worldwide Golf Shops","affiliate_url":"#demo","specs":{"length":"35\"","style":"Blade"},"dexterity_verified":true,"added_at":"2026-08-17"},
+    {"id":"p11","brand":"Wilson","name":"Launch Pad 2 Complete Set","category":"set","hand":"left","price":399,"currency":"USD","retailer":"Amazon","affiliate_url":"#demo","specs":{"clubs":"11-piece + bag"},"dexterity_verified":true,"added_at":"2026-08-14"},
+    {"id":"p12","brand":"Cobra","name":"Air-X Complete Set","category":"set","hand":"left","price":649,"currency":"USD","retailer":"PGA Tour Superstore","affiliate_url":"#demo","specs":{"clubs":"10-piece + bag"},"dexterity_verified":true,"added_at":"2026-08-25"},
+    {"id":"p13","brand":"TaylorMade","name":"Stealth 2 HD Driver","category":"driver","hand":"left","price":329,"currency":"USD","retailer":"2nd Swing Golf","affiliate_url":"#demo","specs":{"loft":"12°","shaft":"Senior graphite"},"dexterity_verified":true,"added_at":"2026-08-09"},
+    {"id":"p14","brand":"Titleist","name":"T100 Iron Set, 4-PW","category":"iron","hand":"left","price":1099,"currency":"USD","retailer":"Worldwide Golf Shops","affiliate_url":"#demo","specs":{"set":"4–PW","shaft":"Steel, stiff"},"dexterity_verified":true,"added_at":"2026-08-12"}
+  ]
+}

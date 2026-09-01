@@ -68,6 +68,26 @@ def guess_category(title: str) -> str:
     return "iron"  # safe default; review uncategorized items manually
 
 
+def build_ebay_affiliate_url(item_web_url: str, campaign_id: str) -> str:
+    """
+    Turns a plain eBay item URL into a tracked EPN (eBay Partner Network)
+    link, in the same format eBay's own dashboard generates:
+    ...?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=YOUR_ID&toolid=10001&mkevt=1
+
+    711-53200-19255-0 is eBay's standard default rotation ID for the US
+    site (mkrid) -- this is a fixed, publicly-documented value, not
+    something unique to your account. campaign_id is the one value that's
+    actually yours.
+    """
+    if not campaign_id or not item_web_url:
+        return item_web_url or "#"
+    separator = "&" if "?" in item_web_url else "?"
+    return (
+        f"{item_web_url}{separator}"
+        f"mkcid=1&mkrid=711-53200-19255-0&siteid=0"
+        f"&campid={campaign_id}&toolid=10001&mkevt=1"
+    ) 
+  
 def is_confirmed_left_handed(title: str, item_specifics: dict) -> bool:
     """
     The single most important filter on this whole site: never show a

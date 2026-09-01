@@ -144,11 +144,8 @@ def fetch_ebay_listings(oauth_token: str, campaign_id: str) -> list:
                     "category": guess_category(title),
                     "price": float(price.get("value", 0)),
                     "currency": price.get("currency", "USD"),
-                    "retailer": item.get("seller", {}).get("username", "eBay seller"),
-                    # EPN affiliate links are normally built with the Affiliate
-                    # API / campaign ID rather than the raw itemWebUrl --
-                    # swap this for a real generated tracking link.
-                    "affiliate_url": item.get("itemWebUrl", "#"),
+                    "retailer": item.get("seller", {}).get("username", "eBay seller")
+                    "affiliate_url": build_ebay_affiliate_url(item.get("itemWebUrl", "#"), campaign_id),
                     "image_url": (item.get("image") or {}).get("imageUrl"),
                 })
             time.sleep(0.3)  # be polite to the API

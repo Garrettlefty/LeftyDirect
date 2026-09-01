@@ -86,8 +86,9 @@ def build_ebay_affiliate_url(item_web_url: str, campaign_id: str) -> str:
         f"{item_web_url}{separator}"
         f"mkcid=1&mkrid=711-53200-19255-0&siteid=0"
         f"&campid={campaign_id}&toolid=10001&mkevt=1"
-    ) 
-  
+    )
+
+
 def is_confirmed_left_handed(title: str, item_specifics: dict) -> bool:
     """
     The single most important filter on this whole site: never show a
@@ -144,7 +145,7 @@ def fetch_ebay_listings(oauth_token: str, campaign_id: str) -> list:
                     "category": guess_category(title),
                     "price": float(price.get("value", 0)),
                     "currency": price.get("currency", "USD"),
-                    "retailer": item.get("seller", {}).get("username", "eBay seller")
+                    "retailer": item.get("seller", {}).get("username", "eBay seller"),
                     "affiliate_url": build_ebay_affiliate_url(item.get("itemWebUrl", "#"), campaign_id),
                     "image_url": (item.get("image") or {}).get("imageUrl"),
                 })

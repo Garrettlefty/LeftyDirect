@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-08-28T12:00:00Z",
-  "source": "manual-seed",
-  "note": "This is starter/demo data so the site has something to show on day one. Once scripts/fetch_products.py is connected to real affiliate APIs and scheduled via GitHub Actions, this file is regenerated automatically and this note goes away.",
+  "generated_at": "2026-09-21T00:00:00Z",
+  "source": "mixed",
+  "note": "One real product (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
   "products": [
+    {"id":"amz-rogue-st-ls","brand":"Callaway","name":"Golf 2022 Rogue ST Triple Diamond LS Driver","category":"driver","hand":"left","price":259.99,"currency":"USD","retailer":"Amazon","affiliate_url":"https://amzn.to/3TceeTe","specs":{"note":"Hand Orientation: Left (confirmed on product page)"},"dexterity_verified":true,"added_at":"2026-09-21"},
     {"id":"p1","brand":"Callaway","name":"Paradym Ai Smoke Driver","category":"driver","hand":"left","price":449,"currency":"USD","retailer":"Rock Bottom Golf","affiliate_url":"#demo","specs":{"loft":"10.5°","shaft":"Regular graphite"},"dexterity_verified":true,"added_at":"2026-08-20"},
     {"id":"p2","brand":"TaylorMade","name":"Qi10 Max Driver","category":"driver","hand":"left","price":499,"currency":"USD","retailer":"2nd Swing Golf","affiliate_url":"#demo","specs":{"loft":"9°","shaft":"Stiff graphite"},"dexterity_verified":true,"added_at":"2026-08-22"},
     {"id":"p3","brand":"Ping","name":"G430 Iron Set, 5-PW","category":"iron","hand":"left","price":799,"currency":"USD","retailer":"PGA Tour Superstore","affiliate_url":"#demo","specs":{"set":"5–PW","shaft":"Steel, regular"},"dexterity_verified":true,"added_at":"2026-08-18"},

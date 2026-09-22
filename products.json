@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-09-21T00:00:00Z",
   "source": "mixed",
-  "note": "One real product (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
+  "note": "Two real products (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
   "products": [
     {
       "id": "amz-rogue-st-ls",
@@ -21,21 +21,23 @@
       "added_at": "2026-09-21"
     },
     {
-      "id": "p1",
+      "id": "amz-paradym-ai-smoke",
       "brand": "Callaway",
-      "name": "Paradym Ai Smoke Driver",
+      "name": "Golf Paradym AI Smoke Max Driver",
       "category": "driver",
       "hand": "left",
-      "price": 449,
+      "price": 399.99,
       "currency": "USD",
-      "retailer": "Rock Bottom Golf",
-      "affiliate_url": "#demo",
+      "retailer": "Amazon",
+      "affiliate_url": "https://amzn.to/4dt5KOi",
+      "image_url": "https://m.media-amazon.com/images/I/712YCYOz+pL._AC_SX679_.jpg",
       "specs": {
+        "hand orientation": "Left",
         "loft": "10.5°",
-        "shaft": "Regular graphite"
+        "flex": "Regular"
       },
       "dexterity_verified": true,
-      "added_at": "2026-08-20"
+      "added_at": "2026-09-21"
     },
     {
       "id": "p2",

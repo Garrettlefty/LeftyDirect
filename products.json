@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-09-21T00:00:00Z",
   "source": "mixed",
-  "note": "Two real products (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
+  "note": "Three real products (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
   "products": [
     {
       "id": "amz-rogue-st-ls",
@@ -34,6 +34,27 @@
       "specs": {
         "hand orientation": "Left",
         "loft": "10.5°",
+        "flex": "Regular"
+      },
+      "dexterity_verified": true,
+      "added_at": "2026-09-21"
+    },
+    {
+      "id": "amz-jaws-raw-wedge",
+      "brand": "Callaway",
+      "name": "Golf 2022 Jaws Raw Wedge",
+      "category": "wedge",
+      "hand": "left",
+      "price": 149.99,
+      "currency": "USD",
+      "retailer": "Amazon",
+      "affiliate_url": "https://amzn.to/4hf0X43",
+      "image_url": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61WxxbeICHL._AC_SL1500_.jpg",
+      "specs": {
+        "hand orientation": "Left",
+        "size": "52° (Left Hand)",
+        "grind": "S Grind, 10° Bounce",
+        "shaft": "Steel",
         "flex": "Regular"
       },
       "dexterity_verified": true,
@@ -123,23 +144,6 @@
       },
       "dexterity_verified": true,
       "added_at": "2026-08-11"
-    },
-    {
-      "id": "p7",
-      "brand": "Cleveland",
-      "name": "RTX ZipCore Wedge",
-      "category": "wedge",
-      "hand": "left",
-      "price": 149,
-      "currency": "USD",
-      "retailer": "PGA Tour Superstore",
-      "affiliate_url": "#demo",
-      "specs": {
-        "loft": "56°",
-        "bounce": "12°"
-      },
-      "dexterity_verified": true,
-      "added_at": "2026-08-23"
     },
     {
       "id": "p8",

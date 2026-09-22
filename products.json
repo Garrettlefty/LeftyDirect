@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-09-21T00:00:00Z",
   "source": "mixed",
-  "note": "Four real products (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
+  "note": "Five real products (Amazon, manually added via SiteStripe) plus demo seed data for the rest. Once the automation script is fully wired up with live API credentials, this file will be regenerated automatically and this note will go away.",
   "products": [
     {
       "id": "amz-rogue-st-ls",
@@ -76,6 +76,26 @@
         "configuration": "4-PW",
         "shaft": "Steel",
         "flex": "Stiff"
+      },
+      "dexterity_verified": true,
+      "added_at": "2026-09-21"
+    },
+    {
+      "id": "amz-spider-tour-putter",
+      "brand": "TaylorMade",
+      "name": "Mint Demo Left Handed 2024 Spider Tour Putter 34\"",
+      "category": "putter",
+      "hand": "left",
+      "price": 349.99,
+      "currency": "USD",
+      "retailer": "Amazon",
+      "affiliate_url": "https://amzn.to/4iGGM1x",
+      "image_url": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/81+PoW4DCWL._AC_SL1500_.jpg",
+      "specs": {
+        "hand orientation": "Left",
+        "size": "34\"",
+        "color": "Silver",
+        "flex": "Uniflex"
       },
       "dexterity_verified": true,
       "added_at": "2026-09-21"
@@ -164,23 +184,6 @@
       },
       "dexterity_verified": true,
       "added_at": "2026-08-19"
-    },
-    {
-      "id": "p9",
-      "brand": "Odyssey",
-      "name": "Ai-One Milled Putter",
-      "category": "putter",
-      "hand": "left",
-      "price": 249,
-      "currency": "USD",
-      "retailer": "2nd Swing Golf",
-      "affiliate_url": "#demo",
-      "specs": {
-        "length": "34\"",
-        "style": "Blade"
-      },
-      "dexterity_verified": true,
-      "added_at": "2026-08-21"
     },
     {
       "id": "p10",

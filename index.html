@@ -138,6 +138,7 @@
     display:flex;align-items:center;justify-content:center;
   }
   .card-art svg{width:74px;height:74px;color:var(--fairway);}
+  .card-art img{max-width:100%;max-height:100%;object-fit:contain;padding:14px;}
   .badge{
     position:absolute;top:10px;left:10px;
     font-family:var(--mono);font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;
@@ -351,7 +352,7 @@
 
 <script>
 (function(){
-  // ---- category icon set (simple line-art club heads, kept intentionally quiet) ----
+  // ---- category icon set (simple line-art club heads, used as a fallback when no real product photo is available) ----
   const ICONS = {
     driver: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 50 L38 20"/><path d="M36 12 C 50 12, 54 22, 50 30 C 46 38, 34 38, 30 30 C 27 24, 30 16, 36 12 Z"/></svg>',
     iron: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 50 L34 16"/><path d="M34 16 L50 12 L48 24 L30 30 Z"/></svg>',
@@ -369,19 +370,7 @@
     generated_at: new Date().toISOString(),
     products: [
       {id:'p1',brand:'Callaway',name:'Paradym Ai Smoke Driver',category:'driver',price:449,retailer:'Rock Bottom Golf',affiliate_url:'#demo',specs:{loft:'10.5°',shaft:'Regular graphite'},added_at:'2026-08-20'},
-      {id:'p2',brand:'TaylorMade',name:'Qi10 Max Driver',category:'driver',price:499,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'9°',shaft:'Stiff graphite'},added_at:'2026-08-22'},
-      {id:'p3',brand:'Ping',name:'G430 Iron Set, 5-PW',category:'iron',price:799,retailer:'PGA Tour Superstore',affiliate_url:'#demo',specs:{set:'5–PW',shaft:'Steel, regular'},added_at:'2026-08-18'},
-      {id:'p4',brand:'Mizuno',name:'JPX923 Forged Irons, 4-PW',category:'iron',price:899,retailer:'Worldwide Golf Shops',affiliate_url:'#demo',specs:{set:'4–PW',shaft:'Steel, stiff'},added_at:'2026-08-15'},
-      {id:'p5',brand:'Titleist',name:'TSR2 Hybrid',category:'hybrid',price:279,retailer:'Rock Bottom Golf',affiliate_url:'#demo',specs:{loft:'19°',shaft:'Regular graphite'},added_at:'2026-08-24'},
-      {id:'p6',brand:'Cobra',name:'Darkspeed Hybrid',category:'hybrid',price:249,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'22°',shaft:'Senior graphite'},added_at:'2026-08-11'},
-      {id:'p7',brand:'Cleveland',name:'RTX ZipCore Wedge',category:'wedge',price:149,retailer:'PGA Tour Superstore',affiliate_url:'#demo',specs:{loft:'56°',bounce:'12°'},added_at:'2026-08-23'},
-      {id:'p8',brand:'Vokey',name:'SM10 Wedge',category:'wedge',price:189,retailer:'Rock Bottom Golf',affiliate_url:'#demo',specs:{loft:'60°',bounce:'8°'},added_at:'2026-08-19'},
-      {id:'p9',brand:'Odyssey',name:'Ai-One Milled Putter',category:'putter',price:249,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{length:'34"',style:'Blade'},added_at:'2026-08-21'},
-      {id:'p10',brand:'Ping',name:'PLD Anser Putter',category:'putter',price:399,retailer:'Worldwide Golf Shops',affiliate_url:'#demo',specs:{length:'35"',style:'Blade'},added_at:'2026-08-17'},
-      {id:'p11',brand:'Wilson',name:'Launch Pad 2 Complete Set',category:'set',price:399,retailer:'Amazon',affiliate_url:'#demo',specs:{clubs:'11-piece + bag'},added_at:'2026-08-14'},
-      {id:'p12',brand:'Cobra',name:'Air-X Complete Set',category:'set',price:649,retailer:'PGA Tour Superstore',affiliate_url:'#demo',specs:{clubs:'10-piece + bag'},added_at:'2026-08-25'},
-      {id:'p13',brand:'TaylorMade',name:'Stealth 2 HD Driver',category:'driver',price:329,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'12°',shaft:'Senior graphite'},added_at:'2026-08-09'},
-      {id:'p14',brand:'Titleist',name:'T100 Iron Set, 4-PW',category:'iron',price:1099,retailer:'Worldwide Golf Shops',affiliate_url:'#demo',specs:{set:'4–PW',shaft:'Steel, stiff'},added_at:'2026-08-12'}
+      {id:'p2',brand:'TaylorMade',name:'Qi10 Max Driver',category:'driver',price:499,retailer:'2nd Swing Golf',affiliate_url:'#demo',specs:{loft:'9°',shaft:'Stiff graphite'},added_at:'2026-08-22'}
     ]
   };
 
@@ -396,6 +385,13 @@
 
   function money(n){
     return '$' + Number(n).toLocaleString('en-US', {maximumFractionDigits:0});
+  }
+
+  function cardArt(p){
+    if(p.image_url){
+      return `<img src="${p.image_url}" alt="${p.brand} ${p.name}" loading="lazy" onerror="this.outerHTML='${(ICONS[p.category] || '').replace(/'/g, "\\'")}';">`;
+    }
+    return ICONS[p.category] || '';
   }
 
   function render(){
@@ -424,7 +420,7 @@
       <article class="card">
         <div class="card-art">
           <span class="badge">${CHECK} Verified lefty</span>
-          ${ICONS[p.category] || ''}
+          ${cardArt(p)}
         </div>
         <div class="card-body">
           <span class="card-cat">${CATEGORY_LABEL[p.category] || p.category}</span>
@@ -479,7 +475,6 @@
     render();
   }
 
-  // Try the live, automation-generated feed first; fall back to bundled demo data.
   fetch('./products.json', {cache:'no-store'})
     .then(r => { if(!r.ok) throw new Error('no feed'); return r.json(); })
     .then(data => boot(data.products || [], {generated_at:data.generated_at}))
